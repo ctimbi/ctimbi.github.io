@@ -37,7 +37,7 @@ var pluginName = "ik_suggest",
 		
 		plugin = this;
 		
-		plugin.notify = $('#arialive') // add hidden live region to be used by screen readers
+		plugin.notify = $('<div/>') // add hidden live region to be used by screen readers
 			.addClass('ik_readersonly')
 			.attr({
 				'role': 'region',
@@ -128,18 +128,6 @@ var pluginName = "ik_suggest",
 		
 		suggestions = plugin.getSuggestions(plugin.options.source, $me.val());
 		
-		if (suggestions.length > 1) {
-			for(var i = 0, l = suggestions.length; i < l; i++) {
-				$('<li/>').html(suggestions[i])
-				.on('click', {'plugin': plugin}, plugin.onOptionClick) // add click event handler
-				.appendTo(plugin.list);
-			}
-			plugin.list.show();
-		} else {
-			plugin.list.hide();
-		}
-
-		console.log("keyCode", event);
 
 		switch (event.keyCode) {
 			case ik_utils.keys.down: // select next suggestion from list   
@@ -175,6 +163,21 @@ var pluginName = "ik_suggest",
 					   
 				break;
 			}
+
+		if (suggestions.length > 1) {
+			for(var i = 0, l = suggestions.length; i < l; i++) {
+				$('<li/>').html(suggestions[i])
+				.on('click', {'plugin': plugin}, plugin.onOptionClick) // add click event handler
+				.appendTo(plugin.list);
+			}
+			plugin.list.show();
+		} else {
+			plugin.list.hide();
+		}
+
+		console.log("keyCode", event);
+
+		
 
 
 	};
