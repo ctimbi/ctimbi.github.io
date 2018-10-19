@@ -38,12 +38,15 @@
 				var val, lbl;
 				
 				val = plugin.getValue();
+				console.log("val", val);
 				
 				if(val < plugin.options.max) {
+					console.log("loading", plugin.options.max);
 					lbl = 'Loading... ' + val + 'kb (' + plugin.getPercent() + '%)';
 					plugin.setValue(val + 10);
 				} else {
 					window.clearInterval(timer);
+					console.log("loading complete");
 					lbl = 'Loading complete!';
 					$("#btnTest").prop({ "disabled": false }).focus();
 				}
