@@ -79,7 +79,7 @@
 		
 		var value;
 		
-		value = Number( this.element.data('aria-valuenow') );
+		value = Number( this.element.attributes('aria-valuenow') );
 		console.log("getValue", value, this.element);
 		
 		return parseInt( value );
