@@ -19,6 +19,7 @@ var pluginName = "ik_suggest",
 	 */
 	function Plugin( element, options ) { 
 		
+		console.log("Plugin", element);
 		this.element = $(element);
 		this.options = $.extend( {}, defaults, options);
 		this._defaults = defaults;
