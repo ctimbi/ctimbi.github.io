@@ -145,7 +145,7 @@ var pluginName = "ik_suggest",
 		switch (event.keyCode) {
 			case ik_utils.keys.down: // select next suggestion from list   
 						selected = plugin.list.find('.selected');  
-						console.log("selected", selected);
+						console.log("selected", selected.length, selected);
 						if(selected.length) {
 							msg = selected.removeClass('selected').next().addClass('selected').text();
 						} else {
