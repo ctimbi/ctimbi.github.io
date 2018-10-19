@@ -129,8 +129,6 @@ var pluginName = "ik_suggest",
 		suggestions = plugin.getSuggestions(plugin.options.source, $me.val());
 		
 
-		
-
 		if (suggestions.length > 1) {
 			for(var i = 0, l = suggestions.length; i < l; i++) {
 				$('<li/>').html(suggestions[i])
@@ -147,6 +145,7 @@ var pluginName = "ik_suggest",
 		switch (event.keyCode) {
 			case ik_utils.keys.down: // select next suggestion from list   
 						selected = plugin.list.find('.selected');  
+						console.log("selected", selected);
 						if(selected.length) {
 							msg = selected.removeClass('selected').next().addClass('selected').text();
 						} else {
