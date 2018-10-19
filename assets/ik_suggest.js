@@ -124,7 +124,7 @@ var pluginName = "ik_suggest",
 		plugin = event.data.plugin;
 		$me = $(event.currentTarget);
 			
-		plugin.list.empty();
+		//plugin.list.empty();
 		
 		suggestions = plugin.getSuggestions(plugin.options.source, $me.val());
 		
