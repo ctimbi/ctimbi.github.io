@@ -124,24 +124,7 @@ var pluginName = "ik_suggest",
 		plugin = event.data.plugin;
 		$me = $(event.currentTarget);
 			
-		//plugin.list.empty();
 		
-		suggestions = plugin.getSuggestions(plugin.options.source, $me.val());
-		
-
-		if (suggestions.length > 1) {
-			for(var i = 0, l = suggestions.length; i < l; i++) {
-				$('<li/>').html(suggestions[i])
-				.on('click', {'plugin': plugin}, plugin.onOptionClick) // add click event handler
-				.appendTo(plugin.list);
-			}
-			plugin.list.show();
-		} else {
-			plugin.list.hide();
-		}
-
-		console.log("keyCode", event);
-
 		switch (event.keyCode) {
 			case ik_utils.keys.down: // select next suggestion from list   
 						selected = plugin.list.find('.selected');  
