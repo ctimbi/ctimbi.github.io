@@ -147,8 +147,10 @@ var pluginName = "ik_suggest",
 						selected = plugin.list.find('.selected');  
 						console.log("selected", selected.length, selected);
 						if(selected.length>0) {
+							console.log("remove selected");
 							msg = selected.removeClass('selected').next().addClass('selected').text();
 						} else {
+							console.log("selected");
 							msg = plugin.list.find('li:first').addClass('selected').text();
 						}
 						plugin.notify.text(msg); // add suggestion text to live region to be read by screen reader
