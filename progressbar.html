@@ -28,7 +28,7 @@
 				plugin = $elem.data("ik_progressbar");
 				plugin.reset();
 				
-				window.timer = window.setInterval(updateProgress, 100, plugin);
+				window.timer = window.setInterval(updateProgress, 1000, plugin);
 				$(e.currentTarget).prop({ "disabled": true });
 				
 			}
