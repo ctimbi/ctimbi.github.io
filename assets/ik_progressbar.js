@@ -61,7 +61,7 @@
 				'id': id + '_instructions',
 				'aria-hidden': 'true'  // hide element from screen readers to prevent it from being read twice
 			})
-		.appendTo(this.element);
+			.appendTo(this.element);
 
 		$('<div/>')
 			.addClass('ik_track')
@@ -123,7 +123,6 @@
 			.attr({ // accessible
 				'aria-valuenow': val
 			});
-      ;
 		
 		this.updateDisplay();
 		
