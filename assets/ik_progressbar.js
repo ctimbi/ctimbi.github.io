@@ -78,6 +78,9 @@
 	Plugin.prototype.getValue = function() {
 		
 		var value;
+
+		console.log("attributes", this.element.attributes);
+
 		
 		value = Number( this.element.attributes['aria-valuenow'].value );
 		console.log("getValue", value, this.element);
