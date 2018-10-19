@@ -142,7 +142,9 @@
 	/** Updates text in live region to notify about current status. */
 	Plugin.prototype.notify = function() {
 		
-		this.notification.text(  this.getPercent() + '%' );
+		var p = this.getPercent();
+		console.log("%",p);
+		this.notification.text(  p + '%' );
 		
 	};
 
