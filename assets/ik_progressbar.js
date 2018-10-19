@@ -80,6 +80,7 @@
 		var value;
 		
 		value = Number( this.element.data('aria-valuenow') );
+		console.log("getValue", value, this.element);
 		
 		return parseInt( value );
 		
