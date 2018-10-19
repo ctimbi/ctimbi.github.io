@@ -79,7 +79,7 @@
 		
 		var value;
 
-		console.log("attributes", this.element.attributes);
+		console.log("attributes", this.element, this.element.attributes);
 
 		
 		value = Number( this.element.attributes['aria-valuenow'].value );
