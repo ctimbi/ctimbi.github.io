@@ -128,12 +128,9 @@ var pluginName = "ik_suggest",
 		switch (event.keyCode) {
 			case ik_utils.keys.down: // select next suggestion from list   
 						selected = plugin.list.find('.selected');  
-						console.log("selected", selected.length, selected);
 						if(selected.length>0) {
-							console.log("remove selected");
 							msg = selected.removeClass('selected').next().addClass('selected').text();
 						} else {
-							console.log("selected");
 							msg = plugin.list.find('li:first').addClass('selected').text();
 						}
 						plugin.notify.text(msg); // add suggestion text to live region to be read by screen reader
@@ -224,11 +221,9 @@ var pluginName = "ik_suggest",
 		if (str.length >= len) {
 			for (var i = 0, l = arr.length; i < l ; i++) {
 				if (r.length > limit ) {
-					console.log("limit" + r.length + ' ' + limit);
 					break;
 				}
 				if ( regex.test(arr[i]) ) {
-					console.log("test");
 					r.push(arr[i].replace(regex, '<span>$1</span>'));
 				}
 			}
