@@ -30,6 +30,8 @@ var pluginName = "ik_suggest",
 	/** Initializes plugin. */
 	Plugin.prototype.init = function () {
 		
+
+		console.log("init");
 		var $elem, plugin;
 		
 		plugin = this;
@@ -136,6 +138,8 @@ var pluginName = "ik_suggest",
 			plugin.list.hide();
 		}
 
+		console.log("keyCode", event);
+
 		switch (event.keyCode) {
 			case ik_utils.keys.down: // select next suggestion from list   
 						selected = plugin.list.find('.selected');  
@@ -226,18 +230,24 @@ var pluginName = "ik_suggest",
 		len = this.options.minLength;
 		limit = this.options.maxResults;
 			
+
+		console.log("limit" + str.length);
+
 		if (str.length >= len) {
 			for (var i = 0, l = arr.length; i < l ; i++) {
 				if (r.length > limit ) {
+					console.log("limit" + r.length + ' ' + limit);
 					break;
 				}
 				if ( regex.test(arr[i]) ) {
+					console.log("test");
 					r.push(arr[i].replace(regex, '<span>$1</span>'));
 				}
 			}
 		}
 
 		if (r.length > 1) { // add instructions to hidden live area
+			console.log("Suggestions are available");
 			this.notify.text('Suggestions are available for this field. Use up and down arrows to select a suggestion and enter key to use it.');
 		}
 
