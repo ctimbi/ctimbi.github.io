@@ -200,7 +200,7 @@
 	*/
 	Plugin.prototype.onKeyDown = function (event) {
 	
-		var $elem, plugin, value;
+		var $elem, plugin, value; 
 	
 		$elem = $(this);
 		plugin = event.data.plugin;
