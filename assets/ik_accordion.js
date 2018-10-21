@@ -34,7 +34,7 @@
 		
 		$elem.attr({
 			'id': id,
-			'role': 'tablist'//'region' // add the accordion to the landmarked regions
+			'role': 'region'//'region' // add the accordion to the landmarked regions
 		}).addClass('ik_accordion');
 
 
@@ -70,7 +70,7 @@
 			var $me = $(this), id = $elem.attr('id') + '_panel_' + i;
 			$me.attr({
 				'id': id,
-				'role': 'tabpanel',//'region', // add role region to each panel
+				'role': 'region',//'region', // add role region to each panel
                 'aria-hidden': true, // mark all panels as hidden
                 'tabindex': 0 // add panels into the tab order
 			});
