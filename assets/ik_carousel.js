@@ -114,19 +114,19 @@
 		
 		$elem = $(this);
 		plugin = event.data.plugin;
+
+		console.log("event", event);
 		
 		if(plugin.timer) {
 			clearInterval(plugin.timer);
 			plugin.timer = null;
 		}
+		
+		plugin.timer = setInterval(plugin.gotoSlide, plugin.options.animationSpeed, {'data':{'plugin': plugin, 'slide': 'right'}});
 
 		if (event.type === 'focusout') {
 			plugin.element.removeAttr('aria-live');
 		}
-		
-		plugin.timer = setInterval(plugin.gotoSlide, plugin.options.animationSpeed, {'data':{'plugin': plugin, 'slide': 'right'}});
-
-		
 		
 	};
 	
@@ -143,6 +143,7 @@
 		clearInterval(plugin.timer);
 		plugin.timer = null;
 	
+		console.log("event", event);
 		if (event.type === 'focusin') {
 			plugin.element.attr({'aria-live': 'polite'});
 		 }
