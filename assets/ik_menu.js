@@ -120,6 +120,8 @@
 		plugin.menuitems // setup event handlers
 			.on('mouseenter', plugin.showSubmenu)
 			.on('mouseleave', plugin.hideSubmenu)
+			.on('focus', plugin.showSubmenu)
+			.on('blur', plugin.hideSubmenu)
 			.on('click', {'plugin': plugin}, plugin.activateMenuItem)
 			.on("keydown", {'plugin': plugin}, plugin.onKeyDown);
 			
