@@ -39,7 +39,7 @@
 				'role': 'region', // assign region role
 				'tabindex': 0, // add into the tab order
 				'aria-describedby': id + '_instructions', // associate with instructions
-				'aria-live': 'off'
+				'aria-live': 'assertive'
 
 			})
 			.addClass('ik_carousel')
@@ -117,6 +117,10 @@
 	 */
 	Plugin.prototype.startTimer = function (event) {
 		
+		if (event.type === 'focusout') {
+			plugin.element.removeAttr('aria-live');
+		}
+
 		var plugin;
 		
 		$elem = $(this);
@@ -131,9 +135,7 @@
 		
 		plugin.timer = setInterval(plugin.gotoSlide, plugin.options.animationSpeed, {'data':{'plugin': plugin, 'slide': 'right'}});
 
-		if (event.type === 'focusout') {
-			plugin.element.removeAttr('aria-live');
-		}
+		
 		
 	};
 	
@@ -146,14 +148,16 @@
 	 */
 	Plugin.prototype.stopTimer = function (event) {
 		
+		if (event.type === 'focusin') {
+			plugin.element.attr({'aria-live': 'polite'});
+		 }
+
 		var plugin = event.data.plugin;
 		clearInterval(plugin.timer);
 		plugin.timer = null;
 	
 		console.log("event", event);
-		if (event.type === 'focusin') {
-			plugin.element.attr({'aria-live': 'polite'});
-		 }
+		
 	};
 	
 	/** 
