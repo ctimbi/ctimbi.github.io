@@ -34,11 +34,31 @@
 		
 		$elem.attr({
 			'id': id,
-			'role': 'region' // add the accordion to the landmarked regions
+			'role': 'tablist'//'region' // add the accordion to the landmarked regions
 		}).addClass('ik_accordion');
+
+
+
+		var $elem;
+	$elem = $(this.element).attr({'role': 'tablist'}).addClass("ik-accordion");
+	if (!this.options.autoCollapse) {
+		$elem.attr({'aria-multiselectable': 'true'});
+	}
+	$elem.children("dd").each(function(i, el) {
+		var $me = $(this), id = $elem.attr('id') + '_panel_' + i;
+		$me.attr({'id': id, 'role': 'tabpanel', 'aria-hidden': true, 'tabindex': 0});
+		$me.prev('dt').attr({'aria-controls': id, 'aria-expanded': false});
+	});
+	$elem.children("dt").attr({'role': 'tab', 'tabindex': 0})
+		.on("keypress", {'me': this}, this.onKeyPress)
+		.on("keydown", {'me': this}, this.onKeyDown)
+		.on("click", {'me': this}, this.togglePanel);
+	$elem.children("dd").hide();
 
 		$elem.attr({'aria-multiselectable': !this.options.autoCollapse}); // define if more than one panel can be expanded
 			
+		$elem.children("dt").attr({'role': 'tab', 'tabindex': 0});
+
 		this.headers = $elem.children('dt').each(function(i, el) {
 			var $me, $btn;
 			
@@ -58,17 +78,19 @@
 			$me.empty().append($btn); // wrap content of each header in an element with role button
 		});
 		
-		this.headers = $elem.children('dt')
-						.attr({'role': 'heading'}); // set heading role for each accordion header
+		//this.headers = $elem.children('dt')
+		//				.attr({'role': 'heading'}); // set heading role for each accordion header
 		
 		this.panels = $elem.children('dd').each(function(i, el) {
 			var $me = $(this), id = $elem.attr('id') + '_panel_' + i;
 			$me.attr({
 				'id': id,
-				'role': 'region', // add role region to each panel
+				'role': 'tabpanel',//'region', // add role region to each panel
                 'aria-hidden': true, // mark all panels as hidden
                 'tabindex': 0 // add panels into the tab order
 			});
+			//$me.attr({'id': id, 'role': 'tabpanel', 'aria-hidden': true, 'tabindex': 0});
+			$me.prev('dt').attr({'aria-controls': id, 'aria-expanded': false});
 		}).hide();
 		
 	};
