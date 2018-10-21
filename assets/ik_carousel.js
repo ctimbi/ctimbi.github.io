@@ -46,8 +46,8 @@
 			.on('keydown', {'plugin': plugin}, plugin.onKeyDown)
 			.on('keypress', {'plugin': plugin}, plugin.onKeyPress)
 			.on('mouseenter', {'plugin': plugin}, plugin.stopTimer)
-			.on('focus', {'plugin': plugin}, plugin.stopTimer)
-			.on('blur', {'plugin': plugin}, plugin.startTimer)
+			.on('focus', {'plugin': plugin}, plugin.focus)
+			.on('blur', {'plugin': plugin}, plugin.blur)
 			.on('mouseleave', {'plugin': plugin}, plugin.startTimer)
 		
 		$controls = $('<div/>')
@@ -162,6 +162,34 @@
 			plugin.element.attr({'aria-live': 'assertive'});
 			$(event.target).attr({'aria-live': 'assertive'});
 		 }
+		
+	};
+
+	/** 
+	 * Stops carousel timer. 
+	 * 
+	 * @param {object} event - Mouse or focus event.
+	 * @param {object} event.data - Event data.
+	 * @param {object} event.data.plugin - Reference to plugin.
+	 */
+	Plugin.prototype.blur = function (event) {
+		console.log("blur", event);
+		
+		$(event.target).attr({'aria-live': 'off'});
+		
+	};
+
+	/** 
+	 * Stops carousel timer. 
+	 * 
+	 * @param {object} event - Mouse or focus event.
+	 * @param {object} event.data - Event data.
+	 * @param {object} event.data.plugin - Reference to plugin.
+	 */
+	Plugin.prototype.focus = function (event) {
+		console.log("blur", event);
+		
+		$(event.target).attr({'aria-live': 'assertive'});
 		
 	};
 	
