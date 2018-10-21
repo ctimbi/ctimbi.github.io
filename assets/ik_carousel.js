@@ -46,8 +46,8 @@
 			.on('keydown', {'plugin': plugin}, plugin.onKeyDown)
 			.on('keypress', {'plugin': plugin}, plugin.onKeyPress)
 			.on('mouseenter', {'plugin': plugin}, plugin.stopTimer)
-			.on('focus', {'plugin': plugin}, plugin.focus)
-			.on('blur', {'plugin': plugin}, plugin.blur)
+			.on('focus', {'plugin': plugin}, plugin.stopTimer)
+			.on('blur', {'plugin': plugin}, plugin.startTimer)
 			.on('mouseleave', {'plugin': plugin}, plugin.startTimer)
 		
 		$controls = $('<div/>')
