@@ -48,8 +48,22 @@
 			.appendTo(this.element);
 		
 		$elem = $(this.element).addClass("ik-menu").attr({'role': 'menu', 'tabindex': 0})
-			.on('focus', function(e){$elem.find('.ik_readersonly').show();})
-			.on('focusout', function(e){$elem.find('.ik_readersonly').hide();});
+			.on('focus', function(e){
+				console.log('focus', e);
+				$elem.find('.ik_readersonly').show();
+				$elem.addClass('ik_menu')
+					.attr({						
+						'aria-hidden': 'false'  // show element from screen readers to prevent it from being read twice
+					});
+			})
+			.on('focusout', function(e){
+				console.log('focusout', e);
+				$elem.find('.ik_readersonly').hide();
+				$elem.addClass('ik_menu')
+					.attr({						
+						'aria-hidden': 'true'  // hide element from screen readers to prevent it from being read twice
+					});
+			});
 			
 		$elem.find('ul:eq(0)')
 			.attr({
