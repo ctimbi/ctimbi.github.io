@@ -63,8 +63,8 @@
 			$me.empty().append($btn); // wrap content of each header in an element with role button
 		});
 		
-		//this.headers = $elem.children('dt')
-		//				.attr({'role': 'heading'}); // set heading role for each accordion header
+		this.headers = $elem.children('dt')
+						.attr({'role': 'heading'}); // set heading role for each accordion header
 		
 		this.panels = $elem.children('dd').each(function(i, el) {
 			var $me = $(this), id = $elem.attr('id') + '_panel_' + i;
