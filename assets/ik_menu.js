@@ -59,10 +59,10 @@
 			.on('focusout', function(e){
 				console.log('focusout', e);
 				$elem.find('.ik_readersonly').hide();
-				$elem.addClass('ik_menu')
+				/*$elem.addClass('ik_menu')
 					.attr({						
 						'aria-hidden': true  // hide element from screen readers to prevent it from being read twice
-					});
+					});*/
 			});
 			
 		$elem.find('ul:eq(0)')
