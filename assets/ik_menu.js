@@ -34,14 +34,22 @@
 				'id': id,
 				'aria-hidden': 'true'  // hide element from screen readers to prevent it from being read twice
 			});
+
+			
+		//$('<div/>').attr({'aria-live': 'polite'}).addClass('readers_only').css({'display': 'none'}).text('Use tab key to enter menu, up and down arrow keys to navigate, left and right to open or collapse submenues, space or enter to select.').appendTo($elem);
 		
 		$('<div/>') // add div element to be used with aria-described attribute of the menu
 			.text(plugin.options.instructions) // get instruction text from plugin options
 			.addClass('ik_readersonly') // hide element from visual display
 			.attr({
-				'id': id + '_instructions'
+				'id': id + '_instructions',
+				'aria-live': 'polite'
 			})
 			.appendTo(this.element);
+		
+		$elem = $(this.element).addClass("ik-menu").attr({'role': 'menu', 'tabindex': 0})
+			.on('focus', function(e){$elem.find('.ik_readersonly').show();})
+			.on('focusout', function(e){$elem.find('.ik_readersonly').hide();});
 			
 		$elem.find('ul:eq(0)')
 			.attr({
