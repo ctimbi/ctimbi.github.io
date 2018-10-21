@@ -38,22 +38,7 @@
 		}).addClass('ik_accordion');
 
 
-
-		var $elem;
-	$elem = $(this.element).attr({'role': 'tablist'}).addClass("ik-accordion");
-	if (!this.options.autoCollapse) {
-		$elem.attr({'aria-multiselectable': 'true'});
-	}
-	$elem.children("dd").each(function(i, el) {
-		var $me = $(this), id = $elem.attr('id') + '_panel_' + i;
-		$me.attr({'id': id, 'role': 'tabpanel', 'aria-hidden': true, 'tabindex': 0});
-		$me.prev('dt').attr({'aria-controls': id, 'aria-expanded': false});
-	});
-	$elem.children("dt").attr({'role': 'tab', 'tabindex': 0})
-		.on("keypress", {'me': this}, this.onKeyPress)
-		.on("keydown", {'me': this}, this.onKeyDown)
-		.on("click", {'me': this}, this.togglePanel);
-	$elem.children("dd").hide();
+	
 
 		$elem.attr({'aria-multiselectable': !this.options.autoCollapse}); // define if more than one panel can be expanded
 			
