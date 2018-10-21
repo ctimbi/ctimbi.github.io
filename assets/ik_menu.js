@@ -32,7 +32,7 @@
 		$elem.addClass('ik_menu')
 			.attr({
 				'id': id,
-				  // hide element from screen readers to prevent it from being read twice
+				'aria-hidden': 'false'  // hide element from screen readers to prevent it from being read twice
 			});
 
 			
@@ -42,27 +42,28 @@
 			.text(plugin.options.instructions) // get instruction text from plugin options
 			.addClass('ik_readersonly') // hide element from visual display
 			.attr({
-				'id': id + '_instructions'
+				'id': id + '_instructions',
+				'aria-live': 'polite'
 			})
 			.appendTo(this.element);
 		
-		/*$elem = $(this.element).addClass("ik-menu").attr({'role': 'menu', 'tabindex': 0})
+		$elem = $(this.element).addClass("ik-menu").attr({'role': 'menu', 'tabindex': 0})
 			.on('focus', function(e){
 				console.log('focus', e);
-				plugin.element.find('.ik_readersonly').show();
-				/*plugin.element.addClass('ik_menu')
+				$elem.find('.ik_readersonly').show();
+				$elem.addClass('ik_menu')
 					.attr({						
-						'aria-hidden': 'false'  // show element from screen readers to prevent it from being read twice
-					});*/
-		/*	})
+						'aria-hidden': false  // show element from screen readers to prevent it from being read twice
+					});
+			})
 			.on('focusout', function(e){
 				console.log('focusout', e);
-				plugin.element.find('.ik_readersonly').hide();
-				/*plugin.element.addClass('ik_menu')
+				$elem.find('.ik_readersonly').hide();
+				$elem.addClass('ik_menu')
 					.attr({						
-						'aria-hidden': 'true'  // hide element from screen readers to prevent it from being read twice
-					});*/
-		//	});
+						'aria-hidden': true  // hide element from screen readers to prevent it from being read twice
+					});
+			});
 			
 		$elem.find('ul:eq(0)')
 			.attr({
@@ -75,7 +76,7 @@
 		$elem.find('li>ul')
 			.attr({
 				'role': 'menu',
-				'aria-hidden': true // hide submenus from screen reader
+				'aria-hidden': false // hide submenus from screen reader
 			});
 		
 		plugin.menuitems = $elem.find('li') // setup menuitems
@@ -133,8 +134,8 @@
 		plugin.menuitems // setup event handlers
 			.on('mouseenter', plugin.showSubmenu)
 			.on('mouseleave', plugin.hideSubmenu)
-			.on('focus', plugin.showSubmenu)
-			.on('blur', plugin.hideSubmenu)
+			//.on('focus', plugin.showSubmenu)
+			//.on('blur', plugin.hideSubmenu)
 			.on('click', {'plugin': plugin}, plugin.activateMenuItem)
 			.on("keydown", {'plugin': plugin}, plugin.onKeyDown);
 			
@@ -148,7 +149,6 @@
 	 * @param {object} event - Mouse event.
 	 */
 	Plugin.prototype.showSubmenu = function(event) {
-		
 		
 		var $elem, $submenu;
 		
