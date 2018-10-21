@@ -42,12 +42,11 @@
 			.text(plugin.options.instructions) // get instruction text from plugin options
 			.addClass('ik_readersonly') // hide element from visual display
 			.attr({
-				'id': id + '_instructions',
-				'aria-live': 'polite'
+				'id': id + '_instructions'
 			})
 			.appendTo(this.element);
 		
-		$elem = $(this.element).addClass("ik-menu").attr({'role': 'menu', 'tabindex': 0})
+		/*$elem = $(this.element).addClass("ik-menu").attr({'role': 'menu', 'tabindex': 0})
 			.on('focus', function(e){
 				console.log('focus', e);
 				plugin.element.find('.ik_readersonly').show();
@@ -55,7 +54,7 @@
 					.attr({						
 						'aria-hidden': 'false'  // show element from screen readers to prevent it from being read twice
 					});*/
-			})
+		/*	})
 			.on('focusout', function(e){
 				console.log('focusout', e);
 				plugin.element.find('.ik_readersonly').hide();
@@ -63,7 +62,7 @@
 					.attr({						
 						'aria-hidden': 'true'  // hide element from screen readers to prevent it from being read twice
 					});*/
-			});
+		//	});
 			
 		$elem.find('ul:eq(0)')
 			.attr({
@@ -149,6 +148,7 @@
 	 * @param {object} event - Mouse event.
 	 */
 	Plugin.prototype.showSubmenu = function(event) {
+		
 		
 		var $elem, $submenu;
 		
