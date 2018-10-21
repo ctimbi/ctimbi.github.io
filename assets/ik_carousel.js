@@ -124,14 +124,14 @@
 		$elem = $(this);
 		plugin = event.data.plugin;
 
-		console.log("event", event);
+		console.log("startimer", event);
 		
 		if(plugin.timer) {
 			clearInterval(plugin.timer);
 			plugin.timer = null;
 		}
 		
-		if (event.type === 'focusout') {
+		if (event.type === 'focusout' || event.type === 'blur') {
 			//plugin.element.removeAttr('aria-live');
 			plugin.element.attr({'aria-live': 'off'});
 			$(event.target).attr({'aria-live': 'off'});
@@ -158,10 +158,10 @@
 		clearInterval(plugin.timer);
 		plugin.timer = null;
 	
-		if (event.type === 'focusin') {
+		if (event.type === 'focusin' || event.type === 'focus') {
 			plugin.element.attr({'aria-live': 'assertive'});
 			$(event.target).attr({'aria-live': 'assertive'});
-		 }
+		}
 		
 	};
 
