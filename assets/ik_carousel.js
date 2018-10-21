@@ -44,6 +44,7 @@
 			})
 			.addClass('ik_carousel')
 			.on('keydown', {'plugin': plugin}, plugin.onKeyDown)
+			.on('keypress', {'plugin': plugin}, plugin.onKeyPress)
 			.on('mouseenter', {'plugin': plugin}, plugin.stopTimer)
 			.on('focus', {'plugin': plugin}, plugin.stopTimer)
 			.on('blur', {'plugin': plugin}, plugin.startTimer)
@@ -219,6 +220,18 @@
 		
 		plugin.navbuttons.removeClass('active').eq(n).addClass('active');
 		
+	}
+
+	Plugin.prototype.onKeyPress = function(event) {
+		var plugin = event.data.plugin;
+		switch (event.keyCode) {
+			case plugin.keys.left:
+			case plugin.keys.up:
+			case plugin.keys.right:
+			case plugin.keys.down:
+				event.stopPropagation();
+				return false;
+		}
 	}
 
 	/**
