@@ -39,7 +39,7 @@
 				'role': 'region', // assign region role
 				'tabindex': 0, // add into the tab order
 				'aria-describedby': id + '_instructions', // associate with instructions
-				'aria-live': 'assertive'
+				'aria-live': 'off'
 
 			})
 			.addClass('ik_carousel')
@@ -149,7 +149,7 @@
 	Plugin.prototype.stopTimer = function (event) {
 		
 		if (event.type === 'focusin') {
-			plugin.element.attr({'aria-live': 'polite'});
+			plugin.element.attr({'aria-live': 'assertive'});
 		 }
 
 		var plugin = event.data.plugin;
