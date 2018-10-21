@@ -38,7 +38,9 @@
 				'id': id,
 				'role': 'region', // assign region role
 				'tabindex': 0, // add into the tab order
-				'aria-describedby': id + '_instructions' // associate with instructions
+				'aria-describedby': id + '_instructions', // associate with instructions
+				'aria-live': 'off'
+
 			})
 			.addClass('ik_carousel')
 			.on('keydown', {'plugin': plugin}, plugin.onKeyDown)
@@ -96,6 +98,8 @@
 			.text(this.options.instructions)
 			.addClass('ik_readersonly')
 			.appendTo($elem);
+
+			
 		
 		plugin.navbuttons = $navbar.children('li');
 		plugin.slides.first().addClass('active');
@@ -162,6 +166,8 @@
 	Plugin.prototype.gotoSlide = function (event) {
 		
 		var plugin, n, $elem, $active, $next, index, direction, transevent;
+
+		console.log("evt goSlide", event);
 		
 		plugin = event.data.plugin;
 		n = event.data.slide;
