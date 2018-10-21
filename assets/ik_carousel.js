@@ -133,7 +133,7 @@
 		
 		if (event.type === 'focusout') {
 			//plugin.element.removeAttr('aria-live');
-			plugin.element..attr({'aria-live': 'off'});
+			plugin.element.attr({'aria-live': 'off'});
 			$(event.target).attr({'aria-live': 'off'});
 		}
 
