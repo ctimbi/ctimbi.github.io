@@ -65,8 +65,9 @@
 
 				})
 				.text(lbl > '' ? lbl : 'Tab ' + (i + 1))
+				.on("keypress", {'plugin': plugin}, plugin.onKeyPress)
 				.on('keydown', {'plugin': plugin, 'index': i}, plugin.onKeyDown) // add keyboard event handler
-				.on('click', {'plugin': plugin, 'index': i}, plugin.selectTab) // add mouse event handler
+				.on('click', {'plugin': plugin, 'index': i, focus: true}, plugin.selectTab) // add mouse event handler
 				.appendTo($tabbar);
 			});
 		
@@ -75,7 +76,8 @@
 		plugin.selectTab({ // select a pre-defined tab / panel 
 			data:{
 				'plugin': plugin, 
-				'index': plugin.options.selectedIndex
+				'index': plugin.options.selectedIndex,
+				focus: false
 			}
 		});
 	};
@@ -92,6 +94,7 @@
 		
 		var plugin = event.data.plugin, 
 			ind = event.data.index, 
+			focus = event.data.focus,
 			$tabs, 
 			$panels;
 		
@@ -114,7 +117,7 @@
 				tabindex: 0
 			});
 		
-		if (event.type) $($tabs[ind]).focus(); // move focus to current tab if reached by mouse or keyboard
+		if (focus) $($tabs[ind]).focus(); // move focus to current tab if reached by mouse or keyboard
 		
 		$panels // hide all panels
 			.attr({
@@ -128,6 +131,18 @@
 			})
 			.show(); 
 		
+	}
+
+	Plugin.prototype.onKeyPress = function (event) {
+		var plugin = event.data.plugin;
+		switch (event.keyCode) {
+			case plugin.keys.left:
+			case plugin.keys.up:
+			case plugin.keys.right:
+			case plugin.keys.down:
+				event.stopPropagation();
+				return false;
+		}
 	}
 
 	/**
@@ -152,12 +167,12 @@
 			case ik_utils.keys.left:
 			case ik_utils.keys.up:
 				next = ind > 0 ? --ind : 0;
-				plugin.selectTab({data:{'plugin': plugin, 'index': next}});
+				plugin.selectTab({data:{'plugin': plugin, 'index': next, focus: true}});
 				break;
 			case ik_utils.keys.right:
 			case ik_utils.keys.down:
 				next = ind < $tabs.length - 1 ? ++ind : $tabs.length - 1;
-				plugin.selectTab({data:{'plugin': plugin, 'index': next}});
+				plugin.selectTab({data:{'plugin': plugin, 'index': next, focus: true}});
 				break;
 			case ik_utils.keys.space:
 				event.preventDefault();
